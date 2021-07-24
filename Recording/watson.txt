@@ -1,0 +1,20 @@
+API KEY : M7KjQANQa67fFpQbwkNnEkz3VlFUOZVqn_YFfUtsGvR8
+ASSISTANT URL : https://api.eu-gb.assistant.watson.cloud.ibm.com/instances/645283b4-b4f7-48d3-90f7-a631fcb6d8de/v2/assistants/29bfe766-1e8a-4341-a7eb-0db08498d834/sessions
+
+
+
+Welcome!
+We've created a Wordpress instance for you. In a couple of seconds it will be up and running.
+
+Please save the following credentials for Wordpress Dashboard:
+
+Username: hrithik
+
+Password: 14lHzP8yh5mk
+
+Instance URL: https://hrithik.intelaedu.com/
+
+Dashboard URL: https://hrithik.intelaedu.com/wp-admin/
+
+
+https://hrithik.intelaedu.com/
