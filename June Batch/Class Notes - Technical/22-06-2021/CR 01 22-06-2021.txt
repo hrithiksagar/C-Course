@@ -1,0 +1,369 @@
+
+	D.Meher 
+	Trainer 
+
+Do you aware C language ?
+-------------------------------------
+
+	1) Subject on Document
+			(Notes)
+	2) Program with Concept in practical approach 
+	3) With a diagram we discuss every concept 
+
+
+
+
+C 
+Code constructs, Methodology  	
+C++
+Code constructs, Methodology 
+
+Any Programming Language
+====================
+
+Alphabets 		Contants		
+Digits 			Variables 		Statement 	Program 
+Spl Symbols 		KeyWord 
+
+=============================================================
+			C- Procedural Programming  (1972)
+Conditional Construcuts -- 
+		if if else  elseif  nested if  switch case 
+Loop 	-- While For Do ..While
+Functions -- C functions are common and more are in C++
+Pointer 
+Structure 
+Union 
+-------------------------------------------------------------------------------
+	C++ Object Oriented
+		C with Classes is C++ (1980)
+The methodology of Object Oriented is added in C, it became C++
+--------------------------------------------------------------------------------
+
+
+Code 
+Methodology 
+
+printf("Hello World");
+	
+	Environment / Compilers 
+	-----------------------------------
+		CodeBlocks (Compiler IDE)
+		Visual Studio (prof)
+
+
+
+#include<iostream>
+void main()
+{
+cout<<"Hello World"<<endl;
+}
+
+====================
+#include<iostream> // same as stdio.h  -- The data travelsfrom source to destination 
+using namespace std;  // Namespace is a collective name of related libraries 
+						// The C libraries are in std collection library
+void main()
+{
+	cout << "Hello World " << endl;  
+}
+----------------------------------------------------
+
+scanf("%...", &var);
+cin>>
+>> input redirectors 
+---------------------------------------------------
+
+#include<iostream> 
+using namespace std;  
+					
+void main()
+{
+	int num;
+	cout << "Enter Number " << endl;
+	cin >> num;
+	cout << "The entered num " << num << endl;
+}
+
+=============================================
+Operators 
+	Arithmetic Operators 
+	Arithmetic Assignment Operators 
+	Comparision Operators 
+	Logical Operators 
+	Unary Operators 
+
+
+	Arithmetic Operators 
+			+ - * / %
+Addition +
+Sub -
+Div /
+Multi *
+Modulo % : To get the reminder value 
+
+
+int res= 5/2
+The value of res is 2
+
+int res= 5%2
+The value of res is 1
+
+
+
+
+
+
+===============================================
+
+ 
+	
+	Arithmetic Assignment Operators 
+			+=
+			-=
+			*=
+			/=
+			%=
+	Comparision Operators 
+	Logical Operators 
+	Unary Operators 
+
+===========================
+
+#include<iostream> 
+using namespace std;  
+					
+void main()
+{
+	int n1,n2, sum;
+	cout << "Enter Number1 " << endl;
+	cin >> n1;
+	cout << "Enter Number2 " << endl;
+	cin >> n2;
+	sum = n1 + n2;
+
+	cout << "The sum: " << sum << endl;
+	
+
+}
+
+
+
+Address of memory 
+
+Every memory block has it's own address in memory 
+
+Bite : Is a combination of 8 Bits 
+
+int : 4 bytes 
+float : 4 bytes 
+
+
+using namespace std;
+std is a set of C libraries. 
+name to reverse as eman
+------------------------------------
+The common functionalities of C are in std library. broght into C++ 
+
+
+=============
+
+#include<iostream> 
+using namespace std;  
+					
+void main()
+{
+	int x;  // Declaration of Variable 
+	cout << "allocated memory of X : " << sizeof(x) << endl;
+	cout << "Address memory of X : " << int(&x) << endl;
+
+}
+
+
+======================
+
+#include<iostream> 
+using namespace std;
+
+void main()
+{
+	int n1, n2, sum;
+	cout << "Enter Number1 " << endl;
+	cin >> n1;
+	cout << "Enter Number2 " << endl;
+	cin >> n2;
+	sum = n1 * n2;
+
+	cout << "The Result: " << sum << endl;
+
+
+}
+
+
+==============================
+#include<iostream> 
+using namespace std;
+
+void main()
+{
+	int n1, n2, sum;
+	cout << "Enter Number1 " << endl;
+	cin >> n1;
+	cout << "Enter Number2 " << endl;
+	cin >> n2;
+	sum = n1 / n2;
+
+	cout << "The Result: " << sum << endl;
+
+
+}
+
+
+======================
+
+#include<iostream> 
+using namespace std;
+
+void main()
+{
+	int n1, n2, res;
+	cout << "Enter Number1 " << endl;
+	cin >> n1;
+	cout << "Enter Number2 " << endl;
+	cin >> n2;
+	res = n1 % n2;
+
+	cout << "The Result: " << res << endl;
+
+}
+
+
+Acticity :
+---------------
+	Wap to accept three digit number from user and display in reverse 
+	Input: 123 
+	Result: 321
+
+============================================================
+
+
+
+
+
+
+Methodology of Language 
+
+C Language :  
+
+	Procedural Oriented Lang
+C++ 
+	Procedural Oriented Lang  + Object Oriented 
+
+==============================
+
+Modular approach/ Functional Approach / Procedural Programming approach 
+Explanation in WhiteBoard .
+----------------------------------------------------
+
+#include<iostream> 
+using namespace std;
+void Bill()
+{}
+void Tax()
+{}
+void dis()
+{}
+
+void main()
+{
+	cout << "The address of main " << int(&main) << endl;
+	cout << "The address of Bill " << int(&Bill) << endl;
+	cout << "The address of Tax " << int(&Tax) << endl;
+	cout << "The address of dis " << int(&dis) << endl;
+}
+
+
+
+
+=====================================================
+
+Training approach 
+
+	Understanding the concept of class and object 
+	
+		Working with C++ (inclu C) 
+			
+				Clases and Objects 
+				Abstraction Encapsulation 
+				Inheritance 
+				Polymorphism 
+				Files 
+
+		
+What is Object ?
+
+
+object is anything inside a class
+Intance of a class 
+It is a real world entity
+things in real world 
+declared instances of a class
+consists of what operations can be performed inside a class.
+
+----------------------------------------------------------------------------
+What are the objects aroud you ?
+
+phone, laptop, boxes
+Fan, light, laptop 
+pen,book, Tab
+clothes,bottle,dishes
+clock,car,bike
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+python 
+num=int("Enter Number")
+=====================================================
+printf("Enter Number");			1972
+scanf("%d", &num);
+
+cout<<"Enter number "<<endl;			1980
+cin>>num;
+=====================================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		

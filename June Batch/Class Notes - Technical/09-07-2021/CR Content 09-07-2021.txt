@@ -1,0 +1,439 @@
+09-07-2021
+
+		
+			
+
+		
+			Session Objectives 
+				Pointer 
+					+ Arrays 
+						+ Structures 
+							+ Pointers 
+					New and Delete 
+					Relationships 
+			Instatiation Relationship 
+			Composition Relationship 
+			Utilization Relationship 
+			Inheritance Relationship 
+
+Data Structure -- -- 
+
+
+
+
+
+
+Pointer is a reference of a memory block to access data directly or Dynamically 
+
+memory block
+	Variable .. int , float , char
+	Array
+	Pointer
+	Struct
+	class
+	
+pointer is to refer the memory block of any type
+pointer has no data type.
+Pointer can be declared using a data type based on the to which it points.
+
+int x=10;
+int *ptr;
+ptr=&x;
+
+==================	
+float x=10;
+float *ptr;
+ptr=&x;
+==================
+
+
+Pgm1: To understand  all are Memory blocks in a program.
+
+#include<iostream>
+using namespace std;
+
+void f1()
+{}
+struct student
+{
+	int x;
+}s1;
+int main()
+{
+	int x = 10;
+	int* ptr;
+	cout << "X Address " <<int(&x) << endl;
+	cout << "ptr Address " << int(&ptr) << endl;
+	cout << "F1 Address " << int(&f1) << endl;
+	cout << "s1 Address " << int(&s1) << endl;
+	cout << "main Address " << int(&main) << endl;
+
+
+}
+
+--------------------
+X Address 12515112
+ptr Address 12515100
+F1 Address 6362538
+s1 Address 6406468
+main Address 6361918
+==============================
+
+
+
+
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int x = 10;
+	int* ptr;
+	ptr = &x;
+	cout << "Address of x: " << int(&x) << endl;
+	cout << "Address of x using ptr: " << int(ptr) << endl;
+	cout << "Value of x" << x << endl;
+	cout << "Value of x using pointer " << *ptr << endl;
+
+
+}
+
+
+====================
+ // Null is a specification as that the pointer is not pointing to any memory location 
+// 
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int a = 10;
+	int* ptr = NULL; 
+	ptr = &a;
+}
+
+
+-------------------------------------------------------------
+
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int x = 10;
+	int* ptr1;
+	ptr1 = &x;
+	int** ptr2;
+	ptr2 = &ptr1;
+	int*** ptr3;
+	ptr3 = &ptr2;
+
+	cout << "Address of x:" << int(&x) << endl;
+	cout << "Address of ptr1:" << int(&ptr1) << endl;
+	cout << "Address of ptr2:" << int(&ptr2) << endl;
+	cout << "Address of x using ptr1: " << int(ptr1) << endl;
+	cout << "Address of x using ptr2: " << int(*ptr2) << endl;
+
+	cout << "-------------------------------" << endl;
+	cout << "Value of x" << x << endl;
+	cout << "Value of x using ptr1: " << *ptr1 << endl;
+	cout << "Value of x using ptr2: " << **ptr2 << endl;
+
+	cout << "X values using Ptr3 " << ***ptr3 << endl;
+	cout << "X values using Ptr3 " << int(**ptr3) << endl;
+
+
+}
+
+========================================================
+
+
+
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int arr[5] = { 12,13,14,15 };
+	cout << "Address of Array Element [0]" << int(&arr[0]) << endl;
+	cout << "Address of Array " << int(arr) << endl;
+
+	cout << "Value of Arr[0]" << arr[0] << endl;
+	cout << "Value of Arr[0]" << *arr << endl;
+
+
+}
+=========================
+
+Array with pointer Example 1
+--------------------------------------------
+
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int arr[5] = { 12,13,14,15 };  // Array itself is a pointer
+	int* p;							// p is also a pointer
+
+	p = arr;
+	cout << "Arr[0] value " << arr[0] << endl;
+	cout << "Arr[0] value " << *arr << endl;
+	cout << "Arr[0] value " << *p << endl;
+
+
+
+
+
+}
+=====================
+
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int arr[5] = { 12,13,14,15,16 };  // Array itself is a pointer
+	int* p;							// p is also a pointer
+
+	p = arr;
+
+	for (int i = 0; i <= 4; i++)
+	{
+		cout << *p << '\t';
+		p++;
+	}
+
+}
+-------------------------------------------------------------------------
+
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int arr[5] = { 12,13,14,15,16 };  // Array itself is a pointer
+	int* p;							// p is also a pointer
+
+	p = arr;
+
+	for (int i = 0; i <= 4; i++)
+	{
+		cout << *p << '\t';
+		p++;
+	}
+
+}
+=========================================================
+
+
+New and Delete opertors in C++
+===========================
+
+Dynamic Memory Allocation 
+	(The memory allocates at Run Time)
+
+malloc()
+calloc()
+realloc()
+free()				Destructor   -- 
+
+
+in later versions of C++, changes in Dynamic memory allocation is implemented using New and Delete operator.
+
+new is a operator to allocate memory dynamically 
+delete is the operator to deallocate the memory allocated to the type
+
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int* ptr = new int();
+	*ptr = 100;
+	cout << *ptr;
+
+	delete ptr;
+	cout << *ptr;
+
+}
+		
+
+Note: Attempt of Reference of the deleted memory will leads to exception
+
+delete ptr;
+cout << *ptr;
+
+This attempt is invalid...
+
+==============================================
+
+#include<iostream>
+using namespace std;
+
+int main()
+{
+	int* num = new int[4];
+	num[0] = 100;
+	num[1] = 200;
+	num[2] = 300;
+	num[3] = 400;
+
+	cout << num[0] << endl;
+	cout << num[1] << endl;
+	cout << num[2] << endl;
+	cout << num[3] << endl;
+
+	delete num;
+}
+
+
+======================================
+
+New and Delete in Class and object
+
+Classname *obj=new Classname ();
+
+delete obj;
+
+
+#include<iostream>
+using namespace std;
+
+
+class Product
+{
+	int pcode;
+	string name;
+	
+public:
+	void init()
+	{
+		cout << "Enter Pcode " << endl;
+		cin >> pcode;
+		cout << "Enter Name " << endl;
+		cin >> name;
+	}
+	void disp()
+	{
+		cout << "Pcode: " <<pcode<< endl;
+		cout << "Name: " <<name<< endl;	
+	}
+};
+
+int main()
+{
+	Product *p1 = new Product();
+	p1->init();
+	p1->disp();
+	
+	delete p1;
+	p1->disp();
+}
+
+
+
+
+============================
+Java 
+
+class ABC
+{}
+class EXEC
+{
+public static void main(String[] args)
+{
+ABC ob1=new ABC();
+}
+}
+
+------------------------				Garbage Collector  is to deallocate memory 
+C#
+
+class ABC
+{}
+class EXEC
+{
+public static void Main(string[] args)
+{
+ABC ob1=new ABC();
+}
+}
+
+
+
+
+=================
+
+#include<iostream>
+using namespace std;
+
+struct Student
+{
+	int code;
+};
+
+int main()
+{
+	struct Student s1;
+	Student* ptr;
+
+	s1.code = 100;
+
+	ptr = &s1;
+
+	cout << "Student Code " << ptr->code << endl;
+
+}
+
+
+
+
+
+=============
+#include<iostream>
+using namespace std;
+
+class Student
+{
+	int code;
+public:
+	void init()
+	{
+		code = 100;
+	}
+	void disp()
+	{
+		cout << code << endl;
+	}
+};
+
+int main()
+{
+	Student *ob1 = new Student();
+	ob1->init();
+	ob1->disp();
+
+	// -> called as function pointer 
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

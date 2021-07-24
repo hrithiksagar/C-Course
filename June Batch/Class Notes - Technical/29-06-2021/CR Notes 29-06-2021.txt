@@ -1,0 +1,620 @@
+29-06-2021
+=========
+
+Session Objectives 
+==============
+			Working with Functions 
+			Understanding Functions in C++
+			Workining with Constructors and Destructors 
+			
+
+	Functions: Reperesents modularity in applications 
+		 Class contains member variables and member functions 
+			called as class members 
+		 The member functions can by invoked using object reference.
+
+	Function 
+		Declaration and Invokation 
+		Passing parameters to the function 
+		Understading the Scope of the members of a class 
+		Return values from Function 
+
+-------------------------
+Class and Object 
+-------------------------
+
+Abstraction and Encapsulation 
+=======================
+		ATM 
+			Saving 
+				WithDraw, Deposit, Mini Stat, PinChange 
+			Current 
+				WithDraw, Deposit, Mini Stat, PinChange 
+			Credit 
+				WithDraw, Deposit, PinChange 
+Abstraction is the result of Encapsulation. 
+
+Encapsulation is wrapping of multiple services and Data in a application 
+Providing what is needed and relevent to the user is Abstraction
+
+Abstraction is not hiding data, not restricting user not to access ... providing what is needed  or relevent to the user.
+
+
+Q) Who will experience the abstraction in Software systems ?
+
+H- Users 
+C- Users 
+A- Users 
+S- Users 
+
+
+Q) How can we implement Abstraction and Encapsulation 
+A: We can implement using Access Specifiers 
+Access Specifiers : Specifies the scope of a class members
+
+Q) What are Access Specifiers C++ supports 
+
+Private :    a) The private member of the class is accessible to that class member functions only.
+	 b) The private member of the class cannot be accessible from outside of the class. 
+	 c) The private member variable can be accessed from outside of the class using 
+	     public functions of the same class 
+	
+Protected: Subject can be discussed in Inheritance *
+
+Public :  The public members of the class can be accessible from anywhere in the application 
+    
+
+Activity 1: 
+	public: 
+		Variable Scope 
+		Function Scope
+
+
+	
+================================
+The following program generates an error while accessing 
+the variable which is in private scope.
+
+#include <iostream>
+using namespace std;
+
+class ABCD
+{
+	int x;  // X is in private scope, hence we cannot access from outside of the class
+
+};
+
+int main()
+{
+	ABCD ob1;
+	ob1.x = 100;
+	
+	return 0;
+}
+
+===================================================
+Modification of the above program to understand the public member of a class is 
+accessible from outside of the class using object reference of the class. 
+
+
+    
+#include <iostream>
+using namespace std;
+
+class ABCD
+{
+public:
+	int x;  // X is in private scope, hence we cannot access from outside of the class
+
+};
+
+int main()
+{
+	ABCD ob1;
+	ABCD ob2;
+	ob1.x = 100;
+	cout << "X of Ob1: " << ob1.x << endl;
+	ob2.x = 500;
+	cout << "X of Ob2: " << ob2.x << endl;
+
+	return 0;
+}
+
+
+
+Explanation: 
+--------------------
+The class ABCD objects ob1 and ob2 are created, each object instance member x is intialized with 
+values 100 and 500 ..
+
+The public member x is initialized
+
+X of Ob1: 100
+X of Ob2: 500
+
+=================================
+
+********************************************************************************************
+ The private member variable of the class is accessible to that class member functions only.
+********************************************************************************************
+
+
+#include <iostream>
+using namespace std;
+
+class ABCD
+{
+	int x;  // X is in private scope, hence we cannot access from outside of the class
+	void disp()
+	{
+		x = 100;
+		cout << "X value: " << x << endl;
+	}
+};
+
+int main()
+{
+	ABCD ob1;
+	ob1.disp();  // Error as the function is in private scope 
+	return 0;
+}
+
+Explanation: 
+ABCD class has a member variable in private scope, which cannt be accessed from outside of the class and the same member can be handled by the member function of the same class.
+
+	int x;  // X is in private scope, hence we cannot access from outside of the class
+	void disp()
+	{
+		x = 100;
+		cout << "X value: " << x << endl;
+	}
+
+
+Point 2: The Function display() is in private scope, hence we cannot access the function
+============================================================
+
+
+
+ c) The private member variable can be accessed from outside of the class using 
+	     public functions of the same class 
+
+
+#include <iostream>
+using namespace std;
+
+class ABCD
+{
+	int x;  // X is in private scope, hence we cannot access from outside of the class
+
+public:
+	void disp()
+	{
+		x = 100;
+		cout << "X value: " << x << endl;
+	}
+};
+
+int main()
+{
+	ABCD ob1;
+	ob1.disp();  // Error as the function is in private scope 
+	return 0;
+}
+
+=============================================================
+
+
+Passing parameters to the function 
+
+Example Function call using Object Refrence to pass values to the application 
+
+#include <iostream>
+using namespace std;
+class Calculator
+{
+	int n1, n2, sum;
+public:
+	void accept()
+	{
+		cout << "Enter Number 1" << endl;
+		cin >> n1;
+		cout << "Enter Number 1" << endl;
+		cin >> n2;
+		add();
+	}
+	void add()
+	{
+		sum = n1 + n2;
+		disp();
+	}
+	void disp()
+	{
+		cout << "Sum:" << sum << endl;
+	}
+};
+
+int main()
+{
+	Calculator c1;
+	c1.accept();
+	//c1.add();
+	//c1.disp();
+	return 0;
+}
+
+
+
+
+=============================
+Passing parameters to a function using object reference 
+
+#include <iostream>
+using namespace std;
+class Calculator
+{
+	int n1, n2, sum;
+public:
+	void accept(int var1, int var2)
+	{
+		n1 = var1;
+		n2 = var2;
+	}
+	void add()
+	{
+		sum = n1 + n2;	
+	}
+	void disp()
+	{
+		cout << "Sum:" << sum << endl;
+	}
+};
+
+int main()			//1
+{
+
+	int a, b;
+	cout << "Enter Number 1" << endl;
+	cin >> a;
+	cout << "Enter Number 2" << endl;
+	cin >> b;
+
+	Calculator c1;
+	c1.accept(a,b);
+	c1.add();
+	c1.disp();
+
+	return 0;
+}
+
+======================================
+
+
+#include <iostream>
+using namespace std;
+
+class ATM
+{
+	int PinNo;
+	void validate()
+	{
+		if (PinNo == 1234)
+			cout << "Valid";
+		else
+			cout << "Invalid";
+	}
+public:
+	void acceptPin()
+	{
+		cout << "Enter PinNo" << endl;
+		cin >> PinNo;
+		validate();
+	}
+};
+
+int main()			
+{
+	ATM U1;
+	U1.acceptPin();
+
+	return 0;
+}
+
+
+============================
+Retrun a value of a variable from a function to the calling module or block 
+
+
+#include <iostream>
+using namespace std;
+class Calculator
+{
+	int n1, n2;
+public:
+	void accept(int var1, int var2)
+	{
+		n1 = var1;
+		n2 = var2;
+	}
+	int add()
+	{
+		return n1 + n2;
+	}
+};
+
+int main()		
+{
+	int a, b;
+	cout << "Enter Number 1" << endl;
+	cin >> a;
+	cout << "Enter Number 2" << endl;
+	cin >> b;
+
+	Calculator c1;
+	c1.accept(a, b);
+	int retVal=c1.add();
+	cout << "The sum: " << retVal << endl;
+	return 0;
+}
+
+==============================================
+Scope Resolution Operator 
+:: 
+
+What is the Roll of Scope Resolution operator ?
+
+a) We may declare a function inside a class and we may define the function ouside of the class 
+
+What is the difference between declaration and definition of the function 
+
+
+---------------------------------------------------------
+{
+Block :  
+}
+
+#include <iostream>
+using namespace std;
+
+int main()		
+{
+	int a
+	{
+	100
+	};
+
+	cout << a;
+	return 0;
+}
+
+---------------------------------------------------------
+
+
+A function can be created using Blocks with out Blocks 
+
+
+1)  Declaration
+	void Fun();  
+2) Definition 
+	void Fun()
+	{
+	...
+	...
+	}
+
+
+The declaration of the function is closed with parenthesis and terminated with semicolon 
+The function with blocks and statements of execution is called as Definition of the function 
+
+=======
+a) We may declare a function inside a class and we may define the function ouside of the class 
+=======
+
+In clss we can declare a function and we can define outside of the class using scope resolution operator 
+
+Example
+=========
+
+
+#include <iostream>
+using namespace std;
+
+class ABC
+{
+public:
+	void disp();  // Declaration 
+};
+
+void ABC::disp()
+{
+	cout << "Hello All I am defined outside of the class " << endl;
+}
+
+int main()		
+{
+	ABC ob;
+	ob.disp();
+	return 0;
+}
+
+
+=================================
+
+Scope Resolution operator is to initialize the Global Variables of a Class  when 
+class members and Global variable have same name
+------------------------------------------------------------------------------------------
+
+
+Abstract of the Subject: 
+
+Global variable in C++  bydefault initializes to 0 
+
+
+#include <iostream>
+using namespace std;
+
+int x, y;  // Global Variable
+class ABCD
+{
+	int x;		// Class member 
+public:
+	void init(int a, int b)
+	{
+		x = a;
+		y = b;
+	}
+	void disp()
+	{
+		cout << " X Value " << ::x << endl;
+		cout << " X Value " << x << endl;
+		cout << " Y Value " << y << endl;
+	}
+};
+
+int main()		
+{
+	ABCD ob1;
+	ob1.init(12, 13);
+	ob1.disp();
+
+	return 0;
+}
+
+
+Explanation: 
+
+In the above program we displayed the values of class member variables  x and y with 12 and 13 
+at the time of calling the function using object reference (ob1.init(12, 13))
+
+The global variable is accessed using :: (scope resolution operator)
+
+void disp()
+	{
+		cout << " X Value " << ::x << endl;
+
+Then the output is 0 
+--------------------------------------------------------------------
+==================================================
+
+Global Variable initialization using the parameter value in class 
+-----------------------------------
+
+#include <iostream>
+using namespace std;
+
+int x, y;  // Global Variable
+class ABCD
+{int x;		// Class member 
+public:
+	void init(int a, int b)
+	{
+		::x = a;   //Global Variable x is initialized with parameter value of a
+		x = 1000;  // Class member initalization 
+		y = b;
+	}
+	void disp()
+	{
+		cout << " X Value " << ::x << endl;
+		cout << " X Value " << x << endl;
+		cout << " Y Value " << y << endl;
+	}};
+int main()		
+{
+	ABCD ob1;
+	ob1.init(12, 13);
+	ob1.disp();
+
+	return 0;
+}
+
+
+
+
+=====================
+
+#include <iostream>
+using namespace std;
+
+int x, y;  // Global Variable
+class ABCD
+{
+	int x;		// Class member 
+	int y;
+public:
+	void init(int a, int b)
+	{
+		::x = a;   //Global Variable x is initialized with parameter value of a
+		x = 1000;  // Class member initalization 
+		::y = b;
+		y = 2000;
+	}
+	void disp()
+	{
+		cout << " X Value " << ::x << endl;
+		cout << " X Value " << x << endl;
+		cout << " Y Value " << y << endl;
+	}};
+int main()		
+{
+	ABCD ob1;
+	ob1.init(12, 13);
+	ob1.disp();
+
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+======================================
+Modularity 
+: 
+Can be implemented using Functions 
+Can be implemented using Classes 
+Can be implemented using Namespace 
+
+======================================
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		

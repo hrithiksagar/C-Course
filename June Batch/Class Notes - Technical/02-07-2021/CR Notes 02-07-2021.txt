@@ -1,0 +1,641 @@
+02-07-2021
+
+			Session Objectives 
+
+			  1)	Working with Functions
+					Passing parameters 
+						Passing Array 
+						Passing Class object 
+						Returning object 
+
+					Understanding Inline Functions
+					
+			2)	Working with Constructors and Destructors 
+				Understanding Static Keyword and Static Function 
+				Working with this keyword 
+				New and Delete operators  
+
+	========================================================
+		Passing parameters 
+				Passing Array 
+				Passing Class object 
+				Returning object 
+
+	Memory allocation of Types (Data Types) 
+	
+
+				            Data Types 
+		==================================================
+		Premitive Data Types 	Abstract / User Defined / Secondary 	
+		------------------------------------------------------------------------------------------
+		int 			Array
+		float			strcut
+		char			class
+		
+
+Memory allocation of Types (Data Types) 
+---------------------------------------------------------
+		Values Type memory allocation 
+		Reference type memory allocation 
+
+
+
+#include<iostream>
+using namespace std;
+
+void add(int a)
+{
+	a++;
+	cout << "A Value in Add " << a << endl;
+}
+
+int main()
+{
+	int x = 10;
+	cout << "X Value in main before call  " << x << endl;
+	add(x);
+	cout << "X Value in main after call " << x << endl;
+}
+
+=============================================
+
+Example to understand Value type and Reference Type (Program generates error) 
+
+#include<iostream>
+using namespace std;
+
+
+int main()
+{
+	int x = 10;  // Value type data type
+	int y = x;
+
+	int source[5] = { 12,14,16,18,20 };
+	int target[5] = source;
+
+}
+
+
+-----------------
+int x = 10;  // Value type data type
+	int y = x;
+
+int , float , char data type are value type data types. 
+You can copy one variable value into another variable directly. 
+
+
+The following statement will generate error as the type obj cannot copy one to other 
+
+int source[5] = { 12,14,16,18,20 };
+int target[5] = source;
+
+
+==============================================
+To copy one Array object to another Array object were should follow element by element copy 
+
+
+#include<iostream>
+using namespace std;
+
+
+int main()
+{
+	int x = 10;  // Value type data type
+	int y = x;
+
+	int source[5] = { 12,14,16,18,20 };
+	int target[5];
+	target[0] = source[0];
+	target[1] = source[1];
+	target[2] = source[2];
+
+	cout << source[0] << endl;
+	cout << source[1] << endl;
+	cout << source[2] << endl;
+
+	cout << target[0] << endl;
+	cout << target[1] << endl;
+	cout << target[2] << endl;
+
+	cout << "--------------------" << endl;
+	source[1] += 100;
+	cout << source[1] << endl;
+	cout << target[1] << endl;
+
+}
+
+
+================
+
+#include<iostream>
+using namespace std;
+
+
+void disp(int target[])
+{
+	cout << "Target Values " << endl;
+	for (int i = 0; i < 5; i++)
+	{
+		cout << target[i] << '\t';
+	}
+	cout << '\n';
+
+	target[1] += 100;
+	cout << "target[1]:" << target[1] << endl;
+}
+
+int main()
+{
+	// main begins
+	int source[5] = { 12,14,16,18,20 };
+	cout << "Source Values " << endl;
+	for (int i = 0; i < 5; i++)
+	{
+		cout << source[i] << '\t';
+	}
+
+	cout << '\n';
+	disp(source);  // Calling function 
+
+	cout << '\n';
+
+	cout << "source[1]: " << source[1] << endl;
+	
+}
+
+============================
+
+
+Change of the program into classes and object approach 
+
+
+#include<iostream>
+using namespace std;
+
+class ABCD
+{
+public:
+void disp(int target[])
+{
+	cout << "Target Values " << endl;
+	for (int i = 0; i < 5; i++)
+	{
+		cout << target[i] << '\t';
+	}
+	cout << '\n';
+
+	target[1] += 100;
+	cout << "target[1]:" << target[1] << endl;
+}
+};
+int main()
+{
+	ABCD ob;
+	// main begins
+	int source[5] = { 12,14,16,18,20 };
+	cout << "Source Values " << endl;
+	for (int i = 0; i < 5; i++)
+	{
+		cout << source[i] << '\t';
+	}
+
+	cout << '\n';
+	ob.disp(source);  // Calling function 
+
+	cout << '\n';
+
+	cout << "source[1]: " << source[1] << endl;
+	
+}
+ 
+============================
+
+#include<iostream>
+using namespace std;
+
+class ABCD
+{
+public:
+	void incre(int arr[])
+	{
+		arr[0] += 200;
+		cout << "Arr[0] at class method: " << arr[0] << endl;;
+	}
+};
+int main()
+{
+	int source[4] = { 12,14,16,18 };
+	cout << "Source of 0 at main before call " << source[0] << endl;
+	ABCD ob1;
+	ob1.incre(source);
+	cout << "Source of 0 at main after call " << source[0] << endl;
+	ABCD ob2;
+	ob2.incre(source);
+	cout << "Source of 0 at main after call " << source[0] << endl;
+	ABCD ob3;
+	ob3.incre(source);
+	cout << "Source of 0 at main after call " << source[0] << endl;
+}
+
+----------------------------------
+
+
+Class and Object Activity to understand each object maintains a seperate copy of class members 
+
+#include<iostream>
+using namespace std;
+
+class ABCD
+{
+	int x;
+public:
+	void init()
+	{
+		x = 0;
+		x++;
+		cout << "X value " << x << endl;
+	}
+	
+};
+int main()
+{
+	ABCD ob1;
+	ob1.init();
+	ABCD ob2;
+	ob2.init();
+	ABCD ob3;
+	ob3.init();
+}
+
+============================================
+
+
+
+Activity 1
+
+Creating a Student Class and objects, passing data from main method to a method of a class using object reference  
+
+
+
+#include<iostream>
+using namespace std;
+
+class Student
+{
+	string name;
+	int RollNo;
+	float Marks;
+public:
+
+	void getData(string n, int rno, float m)
+	{
+		name = n;
+		RollNo = rno;
+		Marks = m;
+	}
+	void dispdata()
+	{
+		cout << "Name: " << name<<endl;
+		cout << "RollNo: " << RollNo<<endl;
+		cout << "Marks: " << Marks << endl;
+	}
+};
+
+int main()
+{
+	string name;
+	int RollNo;
+	float marks;
+
+	cout << "Enter Student Data " << endl;
+	cout << "Enter Name" << endl;
+	cin >> name;
+	cout << "Enter Roll No" << endl;
+	cin >> RollNo;
+	cout << "Enter Marks" << endl;
+	cin >> marks;
+
+	Student ob1;
+	ob1.getData(name, RollNo, marks);
+	ob1.dispdata();
+
+}
+
+============================================
+
+Passing object as parameter to a method 
+----------------------------------------------------
+Explanation in WhiteBoard 
+----------------------------------------------------
+
+
+
+#include<iostream>
+using namespace std;
+
+class Student
+{
+	string name;
+	int RollNo;
+	float Marks;
+public:
+
+	void getData(string n, int rno, float m)
+	{
+		Student obj;
+		obj.name = n;
+		obj.RollNo = rno;
+		obj.Marks = m;
+		dispdata(obj);
+	}
+	void dispdata(Student s1)
+	{
+		cout << "Name: " << s1.name<<endl;
+		cout << "RollNo: " << s1.RollNo<<endl;
+		cout << "Marks: " << s1.Marks << endl;
+	}
+};
+
+int main()
+{
+	string name;
+	int RollNo;
+	float marks;
+
+	Student ob;
+
+	for (int i = 0; i <= 2; i++)
+	{
+		cout << "Enter Student Data " << endl;
+		cout << "Enter Name" << endl;
+		cin >> name;
+		cout << "Enter Roll No" << endl;
+		cin >> RollNo;
+		cout << "Enter Marks" << endl;
+		cin >> marks;
+
+		ob.getData(name, RollNo, marks);
+	}
+	
+	
+
+}
+
+
+=======================================
+Passing object as parameter to a method 
+
+=======================================
+
+#include<iostream>
+using namespace std;
+
+class Bill
+{
+	string pname;
+	int units;
+	int Price;
+	int total;
+public:
+
+	void getData(string pn, int un, int pri)
+	{
+		Bill obj;
+		obj.pname = pn;
+		obj.units=un;
+		obj.Price = pri;
+		CalcBill(obj);
+	}
+	void CalcBill(Bill B1)
+	{
+		total = B1.units * B1.Price;
+		cout << "Name of the Product" << B1.pname << endl;
+		cout << "No of Units" << B1.units << endl;
+		cout << "Price per Unit" << B1.Price << endl;
+		cout << "Total Bill " << total << endl;;
+	}
+};
+
+int main()
+{
+	string Pname;
+	int Units;
+	int Price;
+
+	Bill ob;
+
+	for (int i = 0; i <= 2; i++)
+	{
+		cout << "Enter Product Data " << endl;
+		cout << "Enter Name of the product" << endl;
+		cin >> Pname;
+		cout << "Enter Units" << endl;
+		cin >> Units;
+		cout << "Enter Price" << endl;
+		cin >> Price;
+
+		ob.getData(Pname, Units, Price);
+	}
+	
+
+}
+
+=================================
+
+Returning object to the Calling function 
+
+
+
+#include<iostream>
+using namespace std;
+
+class Bill
+{
+	string pname;
+	int units;
+	int Price;
+	int total;
+public:
+
+	void getData(string pn, int un, int pri)
+	{
+		Bill obj;
+		obj.pname = pn;
+		obj.units=un;
+		obj.Price = pri;
+		Bill retobj=CalcBill(obj);
+	
+		cout << "Total Bill:  " << retobj.total << endl;
+
+	}
+	Bill CalcBill(Bill B1)
+	{
+		Bill TotalBill;
+		TotalBill.total = B1.units * B1.Price;
+		return TotalBill;
+	}
+};
+
+int main()
+{
+	string Pname;
+	int Units;
+	int Price;
+
+	Bill ob;
+
+	for (int i = 0; i <= 2; i++)
+	{
+		cout << "Enter Product Data " << endl;
+		cout << "Enter Name of the product" << endl;
+		cin >> Pname;
+		cout << "Enter Units" << endl;
+		cin >> Units;
+		cout << "Enter Price" << endl;
+		cin >> Price;
+
+		ob.getData(Pname, Units, Price);
+	}
+	
+	
+
+}
+
+=========================
+
+#include<iostream>
+using namespace std;
+
+class Calc
+{
+	int x, y, total;
+public:
+	void init(int v1, int v2)
+	{
+		Calc ob1;
+		ob1.x = v1;
+		ob1.y = v2;
+		Calc retobj=add(ob1);
+		cout << retobj.total << endl;
+	}
+	Calc add(Calc obj1)
+	{
+		obj1.total = obj1.x + obj1.y;
+		//cout << "Total: " << obj1.total << endl;
+		return obj1;
+	}
+	
+};
+
+int main()
+{
+	int a, b;
+	a = 10; b = 15;
+	Calc ob;
+	ob.init(a, b);
+	
+	
+
+}
+==================================================
+
+
+Tax Calc is related to user or related to application 
+application 
+Discount is related to user or related to application 
+application 
+Storing Bill (Transaction data) is related to user or related to application 
+application 
+
+----------------------------------------------------
+Additional Example 
+ for returning an object to the calling function 
+=================
+
+
+#include<iostream>
+using namespace std;
+
+class Calc
+{
+	int x, y, total;
+public:
+	void init(int v1, int v2)
+	{
+		Calc ob1;
+		ob1.x = v1;
+		ob1.y = v2;
+		Calc retobj=add(ob1);
+		cout << retobj.total << endl;
+	}
+	Calc add(Calc obj1)
+	{
+		obj1.total = obj1.x + obj1.y;
+		//cout << "Total: " << obj1.total << endl;
+		return obj1;
+	}
+	
+};
+
+int main()
+{
+	int a, b;
+	a = 10; b = 15;
+	Calc ob;
+	ob.init(a, b);
+	
+	
+
+}
+
+
+===================
+
+#include<iostream>
+using namespace std;
+
+class ABC
+{
+public:
+	static int x;
+	void incre()
+	{
+		x++;
+		cout << x << endl;;
+	}
+};
+
+int ABC::x = 0;
+
+int main()
+{
+	ABC ob1;
+	ob1.incre();
+	ABC ob2;
+	ob2.incre();
+	ABC ob3;
+	ob3.incre();
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

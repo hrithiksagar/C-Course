@@ -1,0 +1,531 @@
+13-07-2021
+
+		Session Objectives 
+		--------------------------
+
+				Understading Relationship Among Classes 
+						Instatnce Relation 
+						Composition Relation 
+						Utilization Relationship 
+						Inheritance Relationship 
+				
+				Every object of a class is an instance of the classes 
+
+
+#include<iostream>
+using namespace std;
+
+class Student
+{
+	int RollNo;
+	string name;
+public:
+	void init()
+	{}
+	void disp()
+	{}
+
+};
+void main()
+{
+	Student S1;
+
+}
+
+==========================================
+
+Composition Relationship 
+
+#include<iostream>
+using namespace std;
+
+class Engine
+{
+public:
+	void Start()
+	{
+		cout << "Engine Start.... " << endl;
+	}
+	void Stop()
+	{
+		cout << "Engine Stop.... " << endl;
+	}
+};
+class Window
+{
+public:
+	void RollUp()
+	{
+		cout << "RollUp.... " << endl;
+	}
+	void RollDown()
+	{
+		cout << "RollDown.... " << endl;
+	}
+};
+
+class Car
+{
+public:
+	Engine engine;  // Object of Engine
+	Window left, right;  // Objects of Window
+};
+
+void main()
+{
+	Car FordFigo;
+	FordFigo.engine.Start();
+	FordFigo.left.RollUp();
+	FordFigo.right.RollDown();
+	FordFigo.engine.Stop();
+}
+
+
+
+
+
+====================================================
+
+
+OOPS allows a class to make use of another class .
+The kind of relationship is called as Utilization Relationship 
+
+
+
+#include<iostream>
+using namespace std;
+
+class Calculator
+{
+public:
+	int ShowRes(int a)
+	{
+		return a * a;
+	}
+};
+class MyClass
+{
+public:
+	void Square(int x)
+	{
+		Calculator Calc;
+		cout<<"Square: "<<Calc.ShowRes(x)<<endl;
+	}
+};
+
+void main()
+{
+	MyClass mc;
+	mc.Square(12);
+}
+
+
+
+
+=======================================
+
+Inheritance Relationship 
+	In software development the concept of Inheritance is a feature to extent the services of the software by adding new features to the existing features. 
+
+
+-- FixedLine -> Intercom -> Will -> CellPhone -> SmartPhone 
+
+Inheritance
+
+Windows O/S -- Version 
+WhatsApp -- New Updates 
+
+
+Inheritance :
+
+Extensibility  ( Adding New Feature to the Existing Features) 
+Resilence To change (Existing Features don't get any disturbance when you add new features)
+
+All Version releases are features of Inheritance
+====================================================
+
+
+Type of Inheritance
+
+Single Inheritance
+Multi Level Inheritance
+Hierarchical Inheritance
+Multiple Inheritance
+Hybrid Inheritance
+
+
+Syntax: 
+
+	class Parent 
+	{
+	....
+	};
+	class Child: public Parent 
+	{
+	...
+	}
+
+The Colon(:) is the operator to represent the Inheritance in C++ 
+
+
+Example: 
+Single Inheritance 
+=================
+
+
+#include<iostream>
+using namespace std;
+
+class BaseClass
+{
+public:
+	void Met1()
+	{
+		cout << "I am Base class method" << endl;
+	}
+};
+class DerivedClass : public BaseClass
+{
+
+};
+
+void main()
+{
+	DerivedClass D1;
+	D1.Met1();
+}
+
+
+Explanation: 
+The class  BaseClass has a method Met1 the derived class "DerivedClass " has no properties 
+but it can use the properties of it's parent.
+==================================
+
+==============================================================
+
+#include<iostream>
+using namespace std;
+
+class BaseClass
+{
+public:
+	void Met1()
+	{
+		cout << "I am Base class method" << endl;
+	}
+};
+class DerivedClass : public BaseClass
+{
+public:
+	void Met2()
+	{
+		cout << "This is Derived class member function " << endl;
+	}
+};
+void main()
+{
+	BaseClass B1;
+	B1.Met1();
+
+	DerivedClass D1;
+	D1.Met1();
+	D1.Met2();
+}
+
+==============================================
+
+Multi Level Inheritance
+==================
+
+#include<iostream>
+using namespace std;
+
+class ClassA
+{
+public:
+	void Met1()
+	{
+		cout << "I am Base class method" << endl;
+	}
+};
+class ClassB : public ClassA
+{
+public:
+	void Met2()
+	{
+		cout << "This is Derived class member function " << endl;
+	}
+};
+class ClassC : public ClassB
+{
+
+};
+
+void main()
+{
+	ClassC obC;
+	obC.Met1();
+	obC.Met2();
+}
+
+
+========================================
+
+#include<iostream>
+using namespace std;
+
+class Person
+{
+	string name;
+	string phone;
+public:
+	void acceptPDate()
+	{
+		cout << "Enter Name" << endl;
+		cin >> name;
+		cout << "Enter Phone" << endl;
+		cin >> phone;
+	}
+	void DispPerson()
+	{
+		cout << "Name :" << name << endl;
+		cout << "Phone" <<phone<<endl;
+	}
+};
+class Student : public Person
+{
+	int Scode;
+	float Marks;
+
+public:
+	void EnterStuData()
+	{
+		cout << "Enter Code" << endl;
+		cin >> Scode;
+		cout << "Enter Marks" << endl;
+		cin >> Marks;
+	}
+	void DispStuData()
+	{
+		cout << "Code: " << Scode << endl;
+		cout << "Marks: " << Marks << endl;
+	}
+};
+
+
+void main()
+{
+	Student s1;
+	cout << "Enter Student Data" << endl;
+	s1.acceptPDate();
+	s1.EnterStuData();
+	cout << "--------Student Data-----------" << endl;
+	s1.DispPerson();
+	s1.DispStuData();
+}
+
+
+
+=========================================
+Example : Hierachical Inheritance 
+=========================================
+
+#include<iostream>
+using namespace std;
+
+class Person
+{
+	string name;
+	string phone;
+public:
+	void acceptPDate()
+	{
+		cout << "Enter Name" << endl;
+		cin >> name;
+		cout << "Enter Phone" << endl;
+		cin >> phone;
+	}
+	void DispPerson()
+	{
+		cout << "Name :" << name << endl;
+		cout << "Phone" <<phone<<endl;
+	}
+};
+class Student : public Person
+{
+	int Scode;
+	float Marks;
+
+public:
+	void EnterStuData()
+	{
+		cout << "Enter Code" << endl;
+		cin >> Scode;
+		cout << "Enter Marks" << endl;
+		cin >> Marks;
+	}
+	void DispStuData()
+	{
+		cout << "Code: " << Scode << endl;
+		cout << "Marks: " << Marks << endl;
+	}
+};
+
+class Employee : public Person
+{
+	int Ecode;
+	float Salary;
+
+public:
+	void EnterEmpData()
+	{
+		cout << "Enter Ecode" << endl;
+		cin >> Ecode;
+		cout << "Enter Salary" << endl;
+		cin >> Salary;
+	}
+	void DispEmpData()
+	{
+		cout << "ECode: " << Ecode << endl;
+		cout << "Salary: " << Salary << endl;
+	}
+};
+
+
+void main()
+{
+	Student s1;
+	cout << "Enter Student Data" << endl;
+	s1.acceptPDate();
+	s1.EnterStuData();
+	cout << "--------Student Data-----------" << endl;
+	s1.DispPerson();
+	s1.DispStuData();
+	cout << "-------------------------------" << endl;
+	cout << " Enter Employee Data " << endl;
+	Employee e1;
+	e1.acceptPDate();
+	e1.EnterEmpData();
+	cout << "---------Employee Data----------- " << endl;
+	e1.DispPerson();
+	e1.DispEmpData();
+
+
+}
+
+
+==============================================
+Role of Constructors and Destructors in Inheritance 
+------------------------------------------------------------------------
+
+
+#include<iostream>
+using namespace std;
+
+class BASE
+{
+public:
+	BASE()
+	{
+		cout << "Constructor inVoked " << endl;
+	}
+	~BASE()
+	{
+		cout << "Destructor inVoked " << endl;
+	}
+};
+class DER : public BASE
+{
+};
+
+void main()
+{
+	BASE b1;
+	DER d1;
+}
+
+
+
+-----------------
+output
+
+Constructor inVoked
+Constructor inVoked
+Destructor inVoked
+Destructor inVoked
+
+Explanation: 
+First the Constructor of the Base class invokes 
+Second the Constructor of the Derived class invokes 
+
+First the Destructor of the Derived class Invokes 
+Second the Destructor of the Base class invokes 
+
+
+Constructor invoks --   Base to Derived 
+Destructor invokes --   Derived to Base 
+
+
+
+
+=================================
+
+
+#include<iostream>
+using namespace std;
+
+class BASE
+{
+public:
+	BASE()
+	{
+		cout << "Constructor of Base inVoked " << endl;
+	}
+	~BASE()
+	{
+		cout << "Destructor of Base inVoked " << endl;
+	}
+};
+class DER : public BASE
+{
+public:
+	DER()
+	{
+		cout << "Constructor of DER inVoked " << endl;
+	}
+	~DER()
+	{
+		cout << "Destructor of DER inVoked " << endl;
+	}
+
+};
+
+void main()
+{
+	BASE b1;
+	DER d1;
+}
+
+
+
+
+
+
+Constructor of Base inVoked  -- Base Const
+Constructor of Base inVoked  -- Der Const of it's Base
+Constructor of DER inVoked  -- Der Const
+Destructor of DER inVoked    --  Der Dest
+Destructor of Base inVoked    --   Dest of Base class which is in Derived Class
+Destructor of Base inVoked    --  Base Class Destructor 
+
+
+
+
+
+
+
+
+
+
+
+

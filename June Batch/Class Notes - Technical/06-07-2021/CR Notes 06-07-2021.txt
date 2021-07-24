@@ -1,0 +1,461 @@
+06-07-2021
+
+			Session Objectives 
+				
+				Static Variable and Static Function 
+
+				Constructor and Destructor 
+
+				Understanding this keyword 
+
+				Inline function 
+				New and Delete 
+				
+				
+
+
+Static Variable: 
+	The type of storage class creates only one copy of 
+	data member to be shared by all objects of the class		
+
+
+Activity to understand static variable / static storage class 
+============================================
+#include<iostream>
+using namespace std;
+
+class ABCD
+{
+public:
+	static int x;
+	void incre()
+	{
+		x++;
+	}
+	void disp()
+	{
+		cout << x << endl;
+	}
+};
+int ABCD::x = 0;
+
+int main()
+{
+	ABCD ob1;
+	ob1.incre();  // Invoke method  or invokation of method 
+	ob1.disp();
+
+	ABCD ob2;
+	ob2.incre();
+	ob2.disp();
+
+	ABCD ob3;
+	ob3.incre();
+	ob3.disp();
+
+	return 0;
+}
+
+------------------------------------------------
+	Static Function 
+
+Gen Functions: 
+-----------------------
+Every function maintains a seperate memory block and the function
+can be created and invoked using object reference. 
+The function copy is available to all the objects. 
+The reference of the function avialable as soon as the object gets created.
+Using object.func(); we can call the function 
+-----------------------------------------------
+
+Static Function 
+
+Static Function gets created before the object of the class gets created.
+So that the static function can be invoked using class reference instead of object reference 
+
+1) Activity 1: A gen program to understand static function 
+----------------------------------------------------------------------------
+#include<iostream>
+using namespace std;
+
+class ABCD
+{
+public:
+   static void F1()
+	{
+		cout << "Hello All" << endl;
+	}
+};
+
+int main()
+{
+	ABCD::F1();
+
+	return 0;
+}
+
+
+---------------------------
+
+The nature of static function 
+1) The refernce of the static function is available to the program area before the object of the class gets created 
+2) The static function does not handle non static variables 
+3) The non static function can handle static variables and static variables 
+
+
+Activity: Non static functions handling static and non static variables 
+
+#include<iostream>
+using namespace std;
+
+class ABCD
+{
+public:
+	static int x;
+	int y;
+    void F1()
+	{
+		cout << "Hello All" << endl;
+		y = 10;
+		cout << "X value: " << x << endl;
+		cout << "Y value: " << y << endl;
+	}
+};
+int ABCD::x = 0;
+
+int main()
+{
+	ABCD ob1;
+	ob1.F1();
+
+	return 0;
+}
+=======================================
+
+
+#include<iostream>
+using namespace std;
+
+class ABCD
+{
+public:
+	static int x;
+	int y;
+    static void F1()
+	{
+		cout << "Hello All" << endl;
+		//y = 10;
+		cout << "X value: " << x << endl;
+		//cout << "Y value: " << y << endl;
+	}
+};
+int ABCD::x = 0;
+
+int main()
+{
+	ABCD ob1;
+	ob1.F1();
+	ABCD::F1();
+
+	return 0;
+}
+
+============================================================
+
+Additional discussion for Hrithik question 
+
+#include<iostream>
+using namespace std;
+void add(int, int);  // Prototype of function 
+void disp(void);
+
+void main(void)
+{
+	add(12, 13);
+	
+}
+
+void add(int a, int b)
+{
+	int x, y;
+	x = a;
+	y = b;
+	int sum = x + y;
+	cout << sum << endl;
+}
+void disp()
+{
+	cout << "Hello All" << endl;
+}
+
+============================================
+
+Constructor and Destructor 
+
+Constructor : 
+
+a) Is a special method invokes automatically when an object of the class gets created. 
+b) Constructor is to allocate memory to the object of the class.
+c) Constructor is to intialize the class members with default values 
+d) Constructor creates for every object of the class 
+
+Constructor does not return any value back to the calling module/ function... 
+
+Constructor name should be same as the class name in declaration 
+
+Activity1: Constructor creation 
+
+#include<iostream>
+using namespace std;
+
+class ABCD
+{
+public:
+	ABCD()
+	{
+		cout << "Constructor invoked " << endl;
+	}
+};
+int main()
+{
+	ABCD ob1;
+	ABCD ob2;
+	ABCD ob3;
+
+	return 0;
+}
+
+=================================================
+c) Constructor is to intialize the class members with default values 
+
+#include<iostream>
+using namespace std;
+
+class ABCD
+{
+	int a, b, c;
+public:
+	
+	ABCD()
+	{
+		a = b = c = 0;
+	}
+	void disp()
+	{
+		cout << a << endl;
+		cout << b << endl;
+		cout << c << endl;
+	}
+};
+
+int main()
+{
+	ABCD ob1;
+	ob1.disp();
+	
+
+	return 0;
+}
+
+=============================================
+
+Passing Parameters to the Constructor 
+
+The constructor takes parameters same as function called as paramterized constructor 
+
+Syntax: 
+
+class ABC
+{
+
+public: 
+ABC(int a, int b)
+{
+
+}
+
+}
+
+
+Program : Parameterized Constructor 
+==================================
+
+#include<iostream>
+using namespace std;
+
+class Calculator
+{
+	int x, y;
+public:
+	Calculator(int a, int b)  // Parameterized constructor 
+	{
+		x = a;		// CLASS MEMBER variable is initialized with parameter of the constructor 
+		y = b;  
+	}
+	void add()
+	{
+		int res = x + y;
+		cout <<"Total:"<< res << endl;
+	}
+};
+
+int main()
+{
+	int n1, n2;
+	cout << "Enter Number: 1 " << endl;
+	cin >> n1;
+	cout << "Enter Number: 2 " << endl;
+	cin >> n2;
+	Calculator ob1(n1, n2);
+
+	ob1.add();
+
+
+	return 0;
+}
+
+
+===============================================
+
+Destructor : 
+	Is a special method invokes automatically when an object life cycle is over.
+	Or the object not longer in use... 
+
+Syntax: 
+Destructor name should be same as the class name and it should be prefixed with tilde symbol 
+
+	class ABC
+	{
+	public: 
+		ABC()		// Constructor 
+		{}
+		~ABC()		// Destructor 
+		{}
+
+	}	
+
+
+
+===========================================
+
+#include<iostream>
+using namespace std;
+
+class ABCD
+{
+public:
+	ABCD()
+	{
+		cout << "Constructor invoked " << endl;
+	}
+	~ ABCD()
+	{
+		cout << "Destructor invoked " << endl;
+	}
+
+};
+int main()
+{
+	ABCD ob1;
+	ABCD ob2;
+	ABCD ob3;
+
+	return 0;
+}
+
+==============================================================
+
+OOPS 
+	Class and Object
+	Abstraction and Encapsulation 
+				PUBLIC AND PRIVATE 
+	Relationship among class 
+		Inheritance
+	Polymorphism 
+			Static 
+				Function Overloading 	
+			Dynamic 
+				Abstract Classes 
+				Virtual 
+	
+
+=======================================================
+
+this keyword: 
+
+	this keyword is a reference of the current instance of the class.
+
+#include<iostream>
+using namespace std;
+
+class ABCD
+{
+	int x;
+public:
+	ABCD(int x)
+	{
+		this->x = x;
+	}
+	void disp()
+	{
+		cout << x << endl;
+	}
+};
+int main()
+{
+	ABCD ob1(12);
+	ob1.disp();
+	return 0;
+}
+
+===========================================
+
+Dynamic Memory Allocation 
+---------------------------------
+
+malloc()
+calloc()
+realloc()
+free()
+====================
+C -- C++
+
+Compile time 
+Run time Memory allocation 
+
+int arr[5]={12,14,15};
+
+
+Next Session 
+	Pointer 
+	New and Delete 
+	Relationships 
+			Instatiation Relationship 
+			Composition Relationship 
+			Utilization Relationship 
+			Inheritance Relationship 
+
+
+=================================================
+QA 
+		
+				
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

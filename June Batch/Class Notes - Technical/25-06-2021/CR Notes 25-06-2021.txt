@@ -1,0 +1,269 @@
+
+25-06-2021
+
+	
+		Session Objectives 
+
+			Understanding Class and Objects 
+			Working with Class and Objects 
+			Implementing Functions in Classes 
+			
+				void 
+				return 
+				
+			
+
+Structure 
+	is a collection of elements of different data types 
+
+in C 
+	struct Student
+	{
+	int rollno;
+	char name[15];
+	float marks;
+	};
+
+
+
+
+class: 	A Collective name of relateed objects of real world whose properties are common.
+	
+		Book 
+			name
+			author
+			publisher
+			price
+			
+		 
+
+
+class Myclass
+{};
+
+class:  is a keyword 
+Myclass: is the name of the class 
+
+{}; Class block can be represented using Braces
+	class should be terminated with semicolon(:)
+
+
+Activity 1
+----------------
+
+#include<iostream> 
+using namespace std;
+
+class Myclass
+{
+
+public:
+	void disp()
+	{
+		cout << "This is Function of class" << endl;
+	}
+};
+
+int main()
+{
+	Myclass ob1;
+	ob1.disp();
+
+	Myclass ob2;
+	ob2.disp();
+
+	return 0;
+}
+
+
+===========================
+
+#include<iostream> 
+using namespace std;
+
+class Car
+{
+	string Engine;  // Member Variable
+	string Fuel;
+	int CC;
+
+public:
+	void Accept()	// Member Function 
+	{
+		cout << "Enter Engine Type " << endl;
+		cin >> Engine;
+		cout << "Enter Fuel Type" << endl;
+		cin >> Fuel;
+		cout << "Enter CC of the Car " << endl;
+		cin >> CC;
+	}
+	void disp()
+	{
+		cout << "Engine: " << Engine << endl;
+		cout << "Fuel: " << Fuel << endl;
+		cout << "CC: " << CC << endl;
+	}
+};
+
+int main()
+{
+	Car alto;
+	alto.Accept();
+	alto.disp();
+
+	return 0;
+}
+==============================================
+
+
+
+The concept of Abstraction and Encapsulation will be discussed in later clasess. 
+
+private:
+public: 
+protected 
+
+These three are called as access specifiers.. 
+----------------------------------------------------------------------------------------
+
+
+
+
+#include<iostream> 
+using namespace std;
+
+
+class Calculator
+{
+	int n1, n2, sum;  // The member variables are 
+
+public:
+	void accept()
+	{
+		cout << "Enter Number1 " << endl;
+		cin >> n1;
+		cout << "Enter Number2 " << endl;
+		cin >> n2;
+	}
+	void add()
+	{
+		sum = n1 + n2;
+	}
+	void disp()
+	{
+		cout << "Total: " << sum << endl;
+	}
+};
+
+int main()
+{
+	Calculator c1;  //1
+	c1.accept();    //2
+	c1.add();       //3 
+	c1.disp();      //4			Top to Bottom approach
+
+	return 0;
+}
+
+
+
+================================================
+The following approach is Modular/ Function/ Procedural Programming approach 
+
+#include<iostream> 
+using namespace std;
+
+	void accept()
+	{
+		int n1, n2, sum;
+		cout << "Enter Number1 " << endl;
+		cin >> n1;
+		cout << "Enter Number2 " << endl;
+		cin >> n2;
+		sum = n1 + n2;
+		cout << "Total:" <<sum;
+	}
+	
+int main()
+{
+	accept();
+
+	return 0;
+}
+
+====================================================
+
+
+#include<iostream> 
+using namespace std;
+
+class Bill
+{
+	string name;
+	int units,price,total;
+public:
+	void accept()
+	{
+		cout << "**** Welcome ABC Corp Bill ****" << endl;
+		cout << "Enter Product Name " << endl;
+		cin >> name;
+		cout << "Enter No of Units " << endl;
+		cin >> units;
+		cout << "Enter Price per unit " << endl;
+		cin >> price;
+	}
+	void calc()
+	{
+		total = units * price;
+	}
+	void disp()
+	{
+		cout<<"****** Bill ******"<<endl;
+		cout << "Product: " << name << endl;
+		cout << "Amount to be paid: " << total << endl;
+	}
+};
+
+int main()
+{
+	Bill b1;
+	b1.accept();
+	b1.calc();
+	b1.disp();
+
+	Bill b2;
+	b2.accept();
+	b2.calc();
+	b2.disp();
+	
+	
+
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	
